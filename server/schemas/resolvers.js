@@ -41,11 +41,11 @@ const resolvers = {
 
             return { token, user };
         },
-        saveBook: async (parent, { userId, body }) => {
+        saveBook: async (parent, { userId, authors, description, bookId, image, link, title }) => {
             return User.findOneAndUpdate(
                 { _id: userId },
                 {
-                    $addToSet: { savedBooks: body },
+                    $addToSet: { savedBooks: { authors, description, bookId, image, link, title } },
                 },
                 {
                     new: true, runValidators: true,
@@ -56,7 +56,7 @@ const resolvers = {
             return User.findOneAndUpdate(
                 { _id: userId },
                 {
-                    $pull: { savedBooks: { bookId: params.bookId } },
+                    $pull: { savedBooks: { _id: params.bookId } },
                 },
                 { new: true }
             )

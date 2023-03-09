@@ -32,9 +32,9 @@ type User {
     }
 
 type Book {
-    bookId: id
     authors: String
     description: String
+    bookId: Int
     title: String
     image: String
     link: String

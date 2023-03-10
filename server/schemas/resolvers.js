@@ -52,11 +52,11 @@ const resolvers = {
                 }
             );
         },
-        removeBook: async (parent, { userId, params }) => {
+        removeBook: async (parent, { userId, bookId }) => {
             return User.findOneAndUpdate(
                 { _id: userId },
                 {
-                    $pull: { savedBooks: { _id: params.bookId } },
+                    $pull: { savedBooks: { bookId } },
                 },
                 { new: true }
             )
